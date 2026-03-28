@@ -14,6 +14,7 @@ return {
   lazy = false,
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<A-m>', ':Neotree focus left<CR>', desc = 'Focus Explorer (Left)', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
