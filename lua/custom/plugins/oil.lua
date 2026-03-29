@@ -43,7 +43,7 @@ return {
       },
 
       keymaps = {
-        ['<CR>'] = {
+        ['<S-CR>'] = {
           desc = 'Open file in background',
           callback = function()
             local oil = require 'oil'
@@ -62,7 +62,7 @@ return {
           end,
         },
 
-        ['<S-CR>'] = 'actions.select',
+        ['<CR>'] = 'actions.select',
         ['<C-l>'] = 'actions.select',
         ['q'] = 'actions.close',
       },

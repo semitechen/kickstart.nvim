@@ -278,6 +278,7 @@ require('lazy').setup({
     ---@module 'gitsigns'
     ---@type Gitsigns.Config
     ---@diagnostic disable-next-line: missing-fields
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       signs = {
         add = { text = '+' }, ---@diagnostic disable-line: missing-fields
@@ -342,8 +343,15 @@ require('lazy').setup({
     -- Note: If you customize your config for yourself,
     -- it’s best to remove the Telescope plugin config entirely
     -- instead of just disabling it here, to keep your config clean.
-    enabled = true,
-    event = 'VimEnter',
+    cmd = 'Telescope',
+    -- Lazy will wait until you press one of your search shortcuts to load it
+    keys = {
+      { '<leader>sh', desc = 'Search Help' },
+      { '<leader>sk', desc = 'Search Keymaps' },
+      { '<leader>sf', desc = 'Search Files' },
+      { '<leader>sg', desc = 'Search Grep' },
+    },
+
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -483,6 +491,7 @@ require('lazy').setup({
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -707,7 +716,7 @@ require('lazy').setup({
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    event = 'VimEnter',
+    event = 'InsertEnter',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -873,6 +882,7 @@ require('lazy').setup({
     build = ':TSUpdate',
     branch = 'main',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
       require('nvim-treesitter').install(parsers)
