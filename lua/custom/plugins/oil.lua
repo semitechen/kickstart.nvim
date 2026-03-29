@@ -33,6 +33,9 @@ return {
     require('oil').setup {
       default_file_explorer = true,
 
+      -- Instantly apply changes (rename/delete/create) on save without asking for confirmation
+      skip_confirm_for_simple_edits = true,
+
       -- Open 2 columns on the left for our clean Git dots
       win_options = {
         signcolumn = 'yes:2',
@@ -56,7 +59,10 @@ return {
             if entry.type == 'directory' then
               oil.open(target)
             else
+              -- Load the file into Neovim's memory
               vim.cmd('badd ' .. vim.fn.fnameescape(target))
+              -- Force the UI to immediately redraw the top tabline so the new buffer appears
+              vim.cmd 'redrawtabline'
               vim.notify('Opened in background: ' .. entry.name)
             end
           end,
@@ -76,11 +82,11 @@ return {
         index = {
           ['!'] = '◌', -- Ignored
           ['?'] = '●', -- Untracked
-          [' A'] = '✚', -- Added
-          ['A'] = '✚', -- Added
+          [' A'] = '', -- Added
+          ['A'] = '', -- Added
           ['C'] = 'C', -- Copied
-          ['D'] = '✖', -- Deleted
-          ['M'] = '●', -- Modified
+          ['D'] = '', -- Deleted
+          ['M'] = '', -- Modified
           ['R'] = 'R', -- Renamed
           ['T'] = 'T', -- Type changed
           ['U'] = 'U', -- Unmerged
@@ -90,11 +96,11 @@ return {
         working_tree = {
           ['!'] = '◌',
           ['?'] = '●',
-          [' A'] = '✚',
-          ['A'] = '✚',
+          [' A'] = '',
+          ['A'] = '',
           ['C'] = 'C',
-          ['D'] = '✖',
-          ['M'] = '●',
+          ['D'] = '',
+          ['M'] = '',
           ['R'] = 'R',
           ['T'] = 'T',
           ['U'] = 'U',
@@ -104,3 +110,4 @@ return {
     }
   end,
 }
+
