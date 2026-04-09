@@ -41,7 +41,7 @@ return {
     vim.api.nvim_create_autocmd('ColorScheme', { callback = sync_hl })
 
     ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function() return os.date '%H:%M ' .. '│%2l:%-2v' end
+    statusline.section_location = function() return '%2l:%-2v' end
 
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_fileinfo = function()

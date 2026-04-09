@@ -33,3 +33,6 @@ vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'Delete character without yank
 vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { desc = 'Change without yanking' })
 vim.keymap.set({ 'n', 'v' }, 'C', '"_C', { desc = 'Change to end of line without yanking' })
 vim.keymap.set({ 'n', 'v' }, 's', '"_s', { desc = 'Substitute without yanking' })
+
+-- Remap for S-CR to work inside tmux
+vim.keymap.set({ 'n', 'i' }, '<Esc>[13;2u', '<S-CR>', { remap = true })
