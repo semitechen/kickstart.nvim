@@ -817,9 +817,22 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        transparent = true,
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+        on_highlights = function(hl, c)
+          local transparent = { bg = 'none', fg = 'none' }
+          hl.BufferLineFill = transparent
+          hl.BufferLineBackground = transparent
+          hl.BufferLineSeparator = transparent
+          hl.BufferLineSeparatorVisible = transparent
+          hl.BufferLineSeparatorSelected = transparent
+          hl.BufferLineTabSeparator = transparent
+          hl.BufferLineTabSeparatorSelected = transparent
+          hl.BufferLineIndicatorSelected = transparent
+          hl.BufferLineIndicatorVisible = transparent
+        end,
       }
 
       -- Load the colorscheme here.

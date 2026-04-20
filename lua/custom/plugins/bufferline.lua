@@ -16,10 +16,9 @@ return {
     require('bufferline').setup {
       options = {
         always_show_bufferline = true,
-      },
-      highlights = {
-        fill = {
-          bg = '#16161e',
+        separator_style = { '', '' },
+        indicator = {
+          style = 'none',
         },
       },
     }
